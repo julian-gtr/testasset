@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Aset Kantor</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#fff;--c:#fff;--t:#0f1b3d;--m:#64748b;--p:#2563eb;--p2:#1d4ed8;--a:#f97316;--b:#e3e8f2;--in:#f5f8ff;--er:#dc2626;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--t);padding-bottom:96px}
+.hero{background:var(--p2);color:#fff;padding:26px 16px 60px;padding-top:max(26px,env(safe-area-inset-top))}
+.hero>div{max-width:720px;margin:auto}.hero h1{margin:0;font-size:24px;font-weight:800}.hero p{margin:4px 0 0;opacity:.8}
+.wrap{max-width:720px;margin:-38px auto 0;padding:0 14px}.wrap.wide{max-width:1240px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 12px #1d4ed814}
+.card h2{margin:0 0 10px;font-size:17px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+label{display:block;font-weight:600;font-size:13px;margin:10px 0 4px}
+input,select{width:100%;padding:12px;font:inherit;font-size:16px;border:1px solid var(--b);border-radius:10px;background:var(--in);color:var(--t)}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--a);outline-offset:1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;font:inherit;font-weight:600;border:1px solid var(--b);border-radius:10px;background:var(--c);color:var(--t);cursor:pointer;text-decoration:none}
+.btn.pri{background:var(--p);border-color:var(--p);color:#fff}.btn.sm{padding:6px 10px;font-size:13px}.btn.acc{background:var(--a);border-color:var(--a);color:#fff}
+.x{border:0;background:none;color:var(--er);font-size:18px;cursor:pointer}
+.ph{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:6px}
+.up{margin:0;border:2px dashed var(--b);border-radius:12px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;text-align:center;background:var(--in)}
+.up span{font-size:28px}.up small{color:var(--m);font-weight:600}.up.has{border-style:solid;border-color:var(--p)}
+.up img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.up.has small{position:absolute;bottom:0;left:0;right:0;background:#000a;color:#fff;padding:3px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--c);border-top:1px solid var(--b);padding:10px 14px max(10px,env(safe-area-inset-bottom));display:flex;gap:10px;justify-content:center;z-index:5}
+.bar .btn{flex:1;max-width:340px}
+.mut,small{color:var(--m)}#sv{font-size:12px;font-weight:600;color:var(--p)}
+.mo{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+.md{background:var(--c);border-radius:16px;padding:20px;width:100%;max-width:400px;max-height:90vh;overflow:auto}
+.md h3{margin:0 0 8px}.row{display:flex;gap:10px;margin-top:16px}.row .btn{flex:1}
+.pg{height:8px;background:var(--b);border-radius:9px;overflow:hidden}.pg i{display:block;height:100%;background:var(--a);transition:width .3s}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:var(--t);color:var(--bg);padding:10px 16px;border-radius:10px;z-index:20;display:none;max-width:90%}
+.stats{display:flex;gap:28px;margin-bottom:12px}.stats b{font-size:26px;display:block;line-height:1.1}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tools input,.tools select{flex:1;min-width:140px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;align-items:start}.grid .card{margin:0}
+.ph0{display:flex;justify-content:space-between;align-items:start;gap:8px;margin-bottom:6px}.ph0 small{display:block}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--in);border:1px solid var(--b)}.tag.ok{color:var(--p);border-color:var(--p)}
+.dv{border-top:1px solid var(--b);padding:10px 0}.dh{display:flex;justify-content:space-between;align-items:center}
+dl{margin:6px 0;display:grid;grid-template-columns:auto 1fr;gap:2px 12px}dt{color:var(--m)}dd{margin:0;font-weight:600;word-break:break-all}
+.th{display:flex;gap:8px;flex-wrap:wrap}.th a{width:92px;text-decoration:none}.th img{width:92px;height:70px;object-fit:cover;border-radius:8px;border:1px solid var(--b);display:block}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.stats{gap:18px}}
+</style>
+</head>
+<body>
+<div class="hero"><div><h1 id="ht"></h1><p id="hs"></p></div></div>
+<div class="wrap" id="app"></div>
+<div id="ov"></div><div id="toast"></div>
+<script>
+// ====== PENGATURAN ======
+const API = 'https://script.google.com/macros/s/AKfycbxtwu_YyHiZ2jKIfBt5X5ScO9jAwwcYJPbrn7rUq5yckjHU1m0flCLpVSfl4s8uEm8JXg/exec'; // URL deploy Apps Script (berakhiran /exec)
+const ROSTER = {
+  'EXATA':['Ainul','Turhamun','Slamet','Febtio','Ridwan','Lutfy','Daniel','Vita','Cynthia','Mutia','Diva','Nurul'],
+  'JP Smart':['There','Ayu','Qina','Jeje','Alvin'],'JLCT':['Egi'],'J-Expert':['Sabrina'],'IT':['Adam','Yunus'],
+  'Yanoshi':['Raza','Neta','Imam','Teddy'],'Support':['Musa','Kusno'],'Marketing':['Julian','Irfan','Agung'],
+  'AE':['Murwoto','Milli'],'VisaTG':['Selvia']
+};
+const DEV = {
+  handphone:{n:'Handphone',i:'📱',f:['Seri Handphone','IMEI'],p:['Depan','Belakang']},
+  charger_hp:{n:'Charger Handphone',i:'🔌',f:['Status'],s:1,p:['Charger']},
+  laptop:{n:'Laptop',i:'💻',f:['Seri Laptop','Serial Number'],p:['Depan','Serial Number']},
+  charger_laptop:{n:'Charger Laptop',i:'🔋',f:['Status'],s:1,p:['Charger']},
+  pc:{n:'PC',i:'🖥️',f:['Nama PC'],p:[]},
+  mouse:{n:'Mouse',i:'🖱️',f:['Merk Mouse','Warna Mouse'],p:['Mouse']}
+};
+
+// ====== UTIL ======
+const $=s=>document.querySelector(s), app=$('#app'), ov=$('#ov');
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+const api=b=>fetch(API,{method:'POST',body:JSON.stringify(b)}).then(r=>r.json()); // teks biasa = tanpa preflight CORS
+const retry=async b=>{for(let i=0;i<3;i++){try{const r=await api(b);if(r.ok)return r;if(i==2)throw Error(r.error)}catch(e){if(i==2)throw e}}};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3200)};
+const head=(t,s,w)=>{$('#ht').textContent=t;$('#hs').textContent=s;app.className='wrap'+(w?' wide':'');app.onclick=app.oninput=app.onchange=null;$('.hero>div').style.maxWidth=w?'1240px':'720px'};
+const idb=new Promise(r=>{const q=indexedDB.open('asset',1);q.onupgradeneeded=()=>q.result.createObjectStore('k');q.onsuccess=()=>r(q.result)});
+const kv=(m,k,v)=>idb.then(d=>new Promise(r=>{const s=d.transaction('k',m=='get'?'readonly':'readwrite').objectStore('k');const q=m=='get'?s.get(k):m=='set'?s.put(v,k):s.delete(k);q.onsuccess=()=>r(q.result)}));
+const shrink=f=>new Promise(res=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.72))};im.src=URL.createObjectURL(f)});
+const busy=(t,p)=>ov.innerHTML=t?`<div class="mo"><div class="md"><h3>${t}</h3><div class="pg"><i style="width:${p}%"></i></div></div></div>`:'';
+const dev=(r,ed)=>`<div class="dv"><div class="dh"><b>${esc(r.d.label)}</b>${ed?`<button class="btn sm" data-ed="${esc(r.div+'|'+r.name+'|'+r.d.key)}">✏️ Edit</button>`:''}</div>
+<dl>${Object.entries(r.d.fields).map(([l,v])=>`<dt>${esc(l)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+<div class="th">${r.d.photos.map(p=>`<a href="${esc(p.url)}" target="_blank"><img loading="lazy" src="https://drive.google.com/thumbnail?id=${p.id}&sz=w400"><small>${esc(p.label)}</small></a>`).join('')}</div></div>`;
+
+// ====== FORM STAF ======
+let S={div:'',name:'',v:{},c:[]}, tm;
+const V=k=>S.v[k]||(S.v[k]={f:{},p:{}});
+const keys=()=>Object.keys(DEV).concat(S.c.map(x=>x.k));
+const def=k=>DEV[k]||S.c.find(x=>x.k==k);
+const ST=['Ada','Tidak ada','Rusak'];
+const need=k=>{const d=def(k);return d.p.length>0&&(!d.s||['Ada','Rusak'].includes(V(k).f.Status))}; // foto hanya jika Ada/Rusak
+const sv=()=>{clearTimeout(tm);tm=setTimeout(()=>{kv('set','draft',S);const e=$('#sv');if(e)e.textContent='Tersimpan otomatis ✓'},250)};
+document.addEventListener('visibilitychange',()=>{if(S.name)kv('set','draft',S)});
+addEventListener('pagehide',()=>{if(S.name)kv('set','draft',S)});
+
+async function init(){
+  head('Data Aset Kantor','Isi perangkat yang kamu pakai. Data tersimpan otomatis, aman kalau layar mati.');
+  S=(await kv('get','draft'))||S; form();
+  app.oninput=e=>{const t=e.target;if(t.dataset.f){V(t.closest('[data-k]').dataset.k).f[t.dataset.f]=t.value;sv()}};
+  app.onchange=async e=>{const t=e.target;
+    if(t.tagName=='SELECT'&&t.dataset.f){V(t.closest('[data-k]').dataset.k).f[t.dataset.f]=t.value;kv('set','draft',S);form()}
+    else if(t.id=='div'){S.div=t.value;S.name='';sv();form()}
+    else if(t.id=='nm'){S.name=t.value;sv();form()}
+    else if(t.dataset.p&&t.files[0]){const k=t.closest('[data-k]').dataset.k;V(k).p[t.dataset.p]=await shrink(t.files[0]);kv('set','draft',S);form()}};
+  app.onclick=e=>{const t=e.target.closest('button');if(!t)return;const k=t.closest('[data-k]')?.dataset.k;
+    if(t.dataset.rm&&confirm('Hapus perangkat ini?')){S.c=S.c.filter(x=>x.k!=k);delete S.v[k];sv();form()}
+    if(t.id=='add'){const n=prompt('Nama perangkat (contoh: Keyboard, Monitor, Tablet)');if(n&&n.trim()){S.c.push({k:'x'+Date.now(),n:n.trim(),i:'📦',f:['Keterangan'],p:['Foto']});sv();form()}}
+    if(t.id=='go')send();
+    if(t.id=='again')location.reload()};
+}
+const card=k=>{const d=def(k),v=V(k);return `<section class="card" data-k="${k}"><h2><span>${d.i} ${esc(d.n)}</span>${k[0]=='x'?'<button class="x" data-rm="1" aria-label="Hapus">✕</button>':''}</h2>
+${d.f.map(l=>l=='Status'?`<label>Status</label><select data-f="Status"><option value="">Pilih status</option>${ST.map(x=>`<option ${x==v.f[l]?'selected':''}>${x}</option>`).join('')}</select>`:`<label>${l}</label><input data-f="${l}" value="${esc(v.f[l])}" placeholder="${l}" autocomplete="off">`).join('')}
+${need(k)?`<div class="ph">${d.p.map(l=>`<label class="up ${v.p[l]?'has':''}">${v.p[l]?`<img src="${v.p[l]}" alt="">`:'<span>📷</span>'}<small>Foto ${l}${v.p[l]?' ✓':''}</small><input type="file" accept="image/*" data-p="${l}" hidden></label>`).join('')}</div>`:''}</section>`};
+function form(){
+  app.innerHTML=`<section class="card"><h2>Siapa kamu? <span id="sv"></span></h2>
+  <label>Divisi</label><select id="div"><option value="">Pilih divisi</option>${Object.keys(ROSTER).map(d=>`<option ${d==S.div?'selected':''}>${d}</option>`).join('')}</select>
+  ${S.div?`<label>Nama</label><select id="nm"><option value="">Pilih nama</option>${ROSTER[S.div].map(n=>`<option ${n==S.name?'selected':''}>${n}</option>`).join('')}</select>`:''}</section>
+  ${S.name?keys().map(card).join('')+'<div class="bar"><button class="btn acc" id="add">＋ Perangkat lain</button><button class="btn pri" id="go">Kirim data</button></div>':'<p class="mut" style="text-align:center">Pilih divisi dan nama dulu untuk mulai mengisi.</p>'}`;
+}
+async function send(){
+  const devs=[];
+  for(const k of keys()){const d=def(k),v=V(k);
+    if(!Object.values(v.f).some(x=>x.trim())&&!Object.keys(v.p).length)continue; // kartu kosong dilewati
+    const miss=d.f.find(l=>!(v.f[l]||'').trim())||(need(k)?d.p.find(l=>!v.p[l]):0);
+    if(miss)return toast(`${d.n}: "${miss}" belum diisi`);
+    devs.push({k,d,v})}
+  if(!devs.length)return toast('Isi minimal satu perangkat');
+  const total=devs.reduce((a,x)=>a+(need(x.k)?x.d.p.length:0),0)+1;let n=0;busy('Mengirim data…',0);
+  try{
+    const out=[];
+    for(const {k,d,v} of devs){const photos=[];
+      for(const l of need(k)?d.p:[]){
+        const base=k[0]=='x'?slug(d.n):k, file=slug(d.p.length>1?`${base}_${l}_${S.name}`:`${base}_${S.name}`);
+        const r=await retry({action:'upload',div:S.div,name:S.name,file,data:v.p[l].split(',')[1]});
+        photos.push({label:l,id:r.id,url:r.url});busy(`Mengunggah foto ${++n}/${total-1}…`,n/total*100)}
+      out.push({key:k,label:d.n,fields:Object.fromEntries(d.f.map(l=>[l,v.f[l].trim()])),photos})}
+    const r=await retry({action:'submit',div:S.div,name:S.name,devices:out});
+    await kv('del','draft');S={div:'',name:'',v:{},c:[]};busy();
+    app.innerHTML=`<section class="card" style="text-align:center"><h2 style="justify-content:center">✅ Data terkirim</h2><p class="mut">Terima kasih! Data asetmu sudah tersimpan.</p><button class="btn pri" id="again">Selesai</button></section>`;
+    scrollTo(0,0);
+  }catch(e){busy();toast('Gagal kirim: '+e.message+'. Data kamu masih aman, coba lagi.')}
+}
+
+// ====== DASHBOARD ADMIN ======  (buka: index.html#admin)
+let D=null,q='',fd='';
+async function admin(){
+  head('Dashboard Aset','Data perangkat seluruh staf',1);
+  if(!localStorage.pin){
+    app.innerHTML=`<div class="card" style="max-width:360px;margin:auto"><h2>🔐 Masuk admin</h2><input id="pin" type="password" placeholder="PIN admin" inputmode="numeric"><div class="row"><button class="btn pri" id="lg">Masuk</button></div></div>`;
+    app.onclick=e=>{if(e.target.id=='lg'){localStorage.pin=$('#pin').value;admin()}};return}
+  app.innerHTML='<p class="mut" style="text-align:center">Memuat data…</p>';
+  let r;try{r=await api({action:'list',pin:localStorage.pin})}catch(e){app.innerHTML='<div class="card">Gagal terhubung ke server. Cek URL API & deploy-nya.</div>';return}
+  if(!r.ok){localStorage.removeItem('pin');toast(r.error);return admin()}
+  D=r;dash();
+  if(localStorage.ed)openEdit(JSON.parse(localStorage.ed)); // pulihkan edit yang belum disimpan
+}
+function dash(){
+  const people=Object.entries(ROSTER).flatMap(([d,ns])=>ns.map(n=>[d,n])),done=people.filter(([d,n])=>D.rows.some(r=>r.div==d&&r.name==n)).length;
+  app.innerHTML=`<div class="card"><div class="stats"><div><b>${done}/${people.length}</b><small>Staf sudah isi</small></div><div><b>${D.rows.length}</b><small>Total perangkat</small></div></div>
+  <div class="tools"><input id="q" placeholder="Cari nama…" value="${esc(q)}"><select id="fd"><option value="">Semua divisi</option>${Object.keys(ROSTER).map(d=>`<option ${d==fd?'selected':''}>${d}</option>`).join('')}</select></div>
+  <div class="tools"><a class="btn" href="${esc(D.sheet)}" target="_blank">📊 Spreadsheet</a><a class="btn" href="${esc(D.folder)}" target="_blank">📁 Drive</a><button class="btn" id="rf">↻ Muat ulang</button><button class="btn" id="lo">Keluar</button></div></div><div class="grid" id="gr"></div>`;
+  grid();
+  app.oninput=e=>{if(e.target.id=='q'){q=e.target.value;grid()}};
+  app.onchange=e=>{if(e.target.id=='fd'){fd=e.target.value;grid()}};
+  app.onclick=e=>{const t=e.target.closest('button');if(!t)return;
+    if(t.id=='rf')admin();if(t.id=='lo'){localStorage.removeItem('pin');admin()}
+    if(t.dataset.qr)qr(t.dataset.qr);
+    if(t.dataset.ed){const[d,n,k]=t.dataset.ed.split('|'),r=D.rows.find(x=>x.div==d&&x.name==n&&x.d.key==k);openEdit({id:t.dataset.ed,f:{...r.d.fields}})}};
+}
+function grid(){
+  const g=Object.entries(ROSTER).flatMap(([d,ns])=>ns.map(n=>[d,n])).filter(([d,n])=>(!fd||d==fd)&&n.toLowerCase().includes(q.toLowerCase()));
+  $('#gr').innerHTML=g.map(([d,n])=>{const rs=D.rows.filter(r=>r.div==d&&r.name==n);
+    return `<article class="card"><div class="ph0"><div><b style="font-size:17px">${esc(n)}</b><small>${esc(d)}${rs[0]?' · diisi '+esc(rs[0].t):''}</small></div><div><span class="tag ${rs.length?'ok':''}">${rs.length?rs.length+' perangkat':'Belum isi'}</span> <button class="btn sm acc" data-qr="${esc(d+'|'+n)}">QR</button></div></div>
+    ${rs.map(r=>dev(r,1)).join('')}</article>`}).join('')||'<p class="mut">Tidak ada hasil.</p>';
+}
+function openEdit(ed){
+  const[d,n,k]=ed.id.split('|');localStorage.ed=JSON.stringify(ed);
+  ov.innerHTML=`<div class="mo"><div class="md"><h3>✏️ ${esc(n)}</h3><small>${esc(d)}</small>${Object.entries(ed.f).map(([l,v])=>l=='Status'?`<label>Status</label><select data-l="Status">${ST.map(x=>`<option ${x==v?'selected':''}>${x}</option>`).join('')}</select>`:`<label>${esc(l)}</label><input data-l="${esc(l)}" value="${esc(v)}">`).join('')}<div class="row"><button class="btn" id="cx">Batal</button><button class="btn pri" id="sv2">Simpan perubahan</button></div></div></div>`;
+  ov.oninput=e=>{if(e.target.dataset.l){ed.f[e.target.dataset.l]=e.target.value;localStorage.ed=JSON.stringify(ed)}};
+  ov.onclick=async e=>{
+    if(e.target.id=='cx'){localStorage.removeItem('ed');ov.innerHTML=''}
+    if(e.target.id=='sv2'){e.target.disabled=true;try{const r=await api({action:'update',pin:localStorage.pin,div:d,name:n,key:k,fields:ed.f});
+      if(r.ok){localStorage.removeItem('ed');ov.innerHTML='';toast('Perubahan tersimpan ✓');admin()}else{toast(r.error);e.target.disabled=false}}catch(x){toast('Gagal menyimpan');e.target.disabled=false}}};
+}
+function qr(id){
+  const[d,n]=id.split('|'),url=location.href.split('#')[0]+'#u='+encodeURIComponent(id);
+  ov.innerHTML=`<div class="mo"><div class="md" style="text-align:center"><h3>${esc(n)}</h3><small>${esc(d)}</small><div id="qc" style="background:#fff;padding:12px;border-radius:12px;display:flex;justify-content:center;margin:14px 0"></div><small>Scan untuk melihat semua aset ${esc(n)}</small><div class="row"><button class="btn" id="cx">Tutup</button><button class="btn pri" id="dl">Unduh PNG</button></div></div></div>`;
+  new QRCode($('#qc'),{text:url,width:240,height:240});
+  ov.onclick=e=>{if(e.target.id=='cx')ov.innerHTML='';
+    if(e.target.id=='dl'){const a=document.createElement('a');a.href=$('#qc canvas').toDataURL();a.download='QR_'+n+'.png';a.click()}};
+}
+
+// ====== HALAMAN HASIL SCAN QR ======
+async function profile(id){
+  const[d,n]=id.split('|');head(n,d);app.innerHTML='<p class="mut" style="text-align:center">Memuat…</p>';
+  try{const r=await api({action:'person',div:d,name:n});
+    app.innerHTML=r.ok&&r.rows.length?`<div class="card"><small>Terakhir diperbarui ${esc(r.rows[0].t)}</small>${r.rows.map(x=>dev(x,0)).join('')}</div>`:'<div class="card">Belum ada data aset untuk nama ini.</div>'}
+  catch(e){app.innerHTML='<div class="card">Gagal memuat data. Coba lagi.</div>'}
+}
+
+// ====== ROUTER ======
+const h=decodeURIComponent(location.hash);
+h.startsWith('#u=')?profile(h.slice(3)):h=='#admin'?admin():init();
+addEventListener('hashchange',()=>location.reload());
+</script>
+</body>
+</html>
